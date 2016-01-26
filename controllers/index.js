@@ -3,8 +3,12 @@
 *
 * */
 
+
+//CONTROLLERS
 var exports = module.exports = function(app) {
-	var hashtag = require('./search.js')(app);
+	var search = require('./search.js')(app);
 };
+
+
 
 return module.exports;

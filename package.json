@@ -22,7 +22,7 @@
     "mocha": "^2.3.4",
     "should": "^8.0.1",
     "superagent": "^1.5.0",
-    "twitter-node-client":"^0.0.5"
+    "twitter-js-client":"^0.0.5"
 
     
   }
