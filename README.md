@@ -1,9 +1,7 @@
 # TwitterDataVisualizer
 Displays data from twitter's API in a way thats quick and easy to read
 
-#How to run:
-1- Clone repo
-2- Navigate to 
+
 
 #How to use:
 -Enter '#' followed by a hashtag to see it's trend across twitter over the selected time frame.
