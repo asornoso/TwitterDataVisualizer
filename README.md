@@ -21,10 +21,12 @@ Displays data from twitter's API in a way thats quick and easy to read
     
 - The UI is done with Facebook's React.js
   - Why? 
-    -To make the UI update faster because faster = better right?
+    - To make the UI update faster because faster = better right?
 
 
 #Developers:
 -Lead Developer: Adam Sornoso
 
--Junior Developer & Graphic Designer: William Navarete
+-Junior Frontend Developer & Graphic Designer: William Navarrete
+
+-Junior Backend Developer: Hector Sanchez
