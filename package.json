@@ -1,0 +1,27 @@
+{
+  "name": "simple_twitter_data_visualizer",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Will include basic functionality",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "github.com/asornoso/TwitterDataVisualizer"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node app.js",
+    "stop": "pkill -9 myApp"
+  },
+  "author": "DirecTV Senior Design Team",
+  "dependencies": {
+    "bluebird": "^3.0.6",
+    "d3": "3.5.x",
+    "express": "4.13.x",
+    "jade": "~1.11.0",
+    "mocha": "^2.3.4",
+    "should": "^8.0.1",
+    "superagent": "^1.5.0"
+    
+  }
+}
