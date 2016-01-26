@@ -9,7 +9,14 @@ Displays data from twitter's API in a way thats quick and easy to read
 -Select the time frame you desire to see(1 hour, 1 day, 1 week, 1 month, 6 months, 1 year)
 
 #How it works:
--This product uses Twitter's API to pull data from twitter and D3.js to graph the data.
+-This product uses Twitter's API to pull data from twitter.
+-D3.js is used to graph the data.
+  -Why? 
+    -To work with a very powerful and customizable graphing tool. Oh and also to show off our javascript skills.
+    
+-The UI is done with Facebook's React.js
+  -Why? 
+    -To make the UI update faster because faster = better right?
 
 
 Lead Developer: Adam Sornoso
