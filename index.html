@@ -24,11 +24,83 @@
 
 </head>
 <body>
+<div class='container'>
+
+	HELLO GUYS
+
+
+
+	<input id='username' placeholder='Username Trend (leave out @)' type='text'/> 
+	<div  class='btn user'> Search </div>
+
+	<br/>
+
+	<input id='hash' placeholder='Hashtag Trend (leave out #)' type='text'/> 
+	<div  class='btn hash'> Search </div>
+
+	<br/><br/>
+	<div class='btn random'>
+	Random Data
+	</div>
+
+</div>
+
+
+<script>
+
+
+
+
+$('.random').click(function(){
+
+		$.getJSON('http://localhost:3001/search/random',
+			function(results)
+			{
+				console.log(results);
+			}
+
+		);
+	}
+);
+
+$('.user').click(function(){
+	var input = $('#username').val();
+	if(input)
+	{
+
+		$.getJSON('http://localhost:3001/search/user/'+input,
+			function(results)
+			{
+				console.log(results);
+			}
+
+		);
+	}
+});
+
+
+$('.hash').click(function(){
+	var input = $('#hash').val();
+	console.log(input);
+	if(input)
+	{
+			$.getJSON('http://localhost:3001/search/hashtag/'+input,
+				function(results)
+				{
+					console.log(results);
+				}
+
+			);
+	}
+});
+
+
+	
 	
 
-HELLO GUYS
 
 
+</script>
 
  <!--REACT SCRIPTS-->
 

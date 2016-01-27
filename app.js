@@ -1,3 +1,5 @@
+
+
 var express = require('express'),
     app = express();
    // port = process.env.PORT || 3000; // Defaults to 3000 in our case
@@ -7,6 +9,9 @@ var express = require('express'),
 
 // sets our default directory to get static content
 app.use(express.static('./public'));
+
+
+
 
 
 
@@ -20,9 +25,10 @@ app.get('*', function(req, res) {
 	res.sendFile('/index.html', { root: __dirname });
 });
 
- app.listen(port, function (err, res) {
+//listen to port for requests
+app.listen(port, function (err, res) {
             console.log('server started on port: %s', port);
-        });
+});
 
 console.log('ran');
 process.title = 'SimpleTwitterDataVisualizer';

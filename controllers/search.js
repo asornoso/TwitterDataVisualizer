@@ -6,12 +6,11 @@ var search = require('../models/search'),
 var exports = module.exports = function(app) {
 
 
-    //example url: localhost:3001/hashtag/#taytay
-    app.get('/hashtag/:query', function(req, res) {
+    //example url: localhost:3001/search/hashtag/#taytay
+    app.get('/search/hashtag/:query', function(req, res) {
         var query = req.params.query;
 
        	search.getAllHashInstances(query).then(function (results){
-
 			res.send(results);
        	})
 
@@ -19,12 +18,22 @@ var exports = module.exports = function(app) {
     });
 
 
-    //example url: localhost:3001/user/@taylorSwift
-    app.get('/user/:query', function(req, res) {
+    //example url: localhost:3001/search/user/@taylorSwift
+    app.get('/search/user/:query', function(req, res) {
         var query = req.params.query;
 
-       	search.User(query).then(function (results){
+       	search.getAllUserInstances(query).then(function (results){
+			res.send(results);
+       	})
 
+
+    });
+
+        //example url: localhost:3001/search/random
+    app.get('/search/random', function(req, res) {
+        var query = req.params.query;
+
+       	search.random(query).then(function (results){
 			res.send(results);
        	})
 
