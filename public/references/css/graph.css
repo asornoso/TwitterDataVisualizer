@@ -1,0 +1,51 @@
+
+
+.axis { 
+  font-size: 1em;
+}
+
+ .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 5px;
+}
+
+
+/*
+circle {
+  fill: white;
+  fill-opacity: 0.2;
+  cursor: move;
+}
+
+circle.selected {
+  fill: #ff7f0e;
+  stroke: #ff7f0e;
+}
+
+circle:hover {
+  fill: #ff7f0e;
+  stroke: #707f0e;
+}
+
+circle.selected:hover {
+  fill: #ff7f0e;
+  stroke: #ff7f0e;
+}
+*/
+
+.chart{
+
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.line{
+  stroke-width:1px;
+}

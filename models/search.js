@@ -10,6 +10,18 @@ var Promise = require('bluebird');
     var Twitter = require('twitter-js-client').Twitter;
 
     //Get this data from your twitter apps dashboard
+
+ var config = {
+        "consumerKey": "",
+        "consumerSecret": "",
+        "accessToken": "",
+        "accessTokenSecret": "",
+        "callBackUrl": ""
+    }
+
+
+
+    /*
     var config = {
         "consumerKey": "",
         "consumerSecret": "",
@@ -17,6 +29,7 @@ var Promise = require('bluebird');
         "accessTokenSecret": "",
         "callBackUrl": ""
     }
+    */
 
     var twitter = new Twitter(config);
 

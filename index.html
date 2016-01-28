@@ -3,83 +3,112 @@
 	<title>Twitter Data Visualizer</title>
 
 
-<!-- REACT -->
-    <script src="references/js/react.js"></script>
-    <script src="references/js/react-dom.js"></script>
 
 <!-- JQUERY-->
     <script src='references/js/jquery-2.1.4.min.js'> </script>
 
-<!-- BABEL -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-
 <!-- D3 -->
       <script src='references/js/d3.v3.min.js'></script>
 
+<!-- MATERIAL JS-->
+     <script src='references/js/materialize.min.js'></script>
 
-
- <!--CSS-->
+<!--CSS-->
      <link rel="stylesheet" href="references/css/materialize.min.css">
+
+     <link rel="stylesheet" href="references/css/graph.css">
+          <link rel="stylesheet" href="references/css/styles.css">
+
   
+<!-- JS HELPERS -->
+	<script src='js/helpers/stats.js'></script>
+  	<script src='js/helpers/lineGraph.js'></script>
+  	<script src='js/helpers/graphUI.js'></script>
+
 
 </head>
 <body>
-<div class='container'>
+<div class='container' style='margin-top:4px; margin-bottom:12px;'>
 
-	HELLO GUYS
+	
 
 
-
-	<input id='username' placeholder='Username Trend (leave out @)' type='text'/> 
-	<div  class='btn user'> Search </div>
-
-	<br/>
-
-	<input id='hash' placeholder='Hashtag Trend (leave out #)' type='text'/> 
-	<div  class='btn hash'> Search </div>
-
-	<br/><br/>
-	<div class='btn random'>
-	Random Data
+	<div class='row'>
+		<div class='col s12 m12 l12 center-align'>
+			<h2>Twitter Data Visualizer</h2>
+			<input id='username' placeholder='Search Username Activity Trend' type='text'/> 
+			<div  class='btn user'> Search </div>
+		</div>
 	</div>
+	<div class='row'>
+		<div class='col s12 m12 l12 center-align'>
+	<!-- 
+		<input id='hash' placeholder='Hashtag Trend (leave out #)' type='text'/> 
+		<div  class='btn hash'> Search </div>
+	 -->
 
+	<!-- GRAPHS ARE PUT INSIDE HERE -->
+	   		<div id="chart1" class="chart"></div>
+		</div>
+	</div>
 </div>
+
+
+
+
+
+
+
 
 
 <script>
 
+$('.loader').hide();
 
+window.onload = function(){
+	updateGraphData([{'created_at':'2016-1-1'}]);
+}
 
-
-$('.random').click(function(){
-
-		$.getJSON('http://localhost:3001/search/random',
-			function(results)
-			{
-				console.log(results);
-			}
-
-		);
-	}
-);
 
 $('.user').click(function(){
+	userSearch();
+});
+
+$('#username').keyup(function (e) {
+    if (e.keyCode == 13) {
+        userSearch();
+    }
+});
+
+function userSearch(){
+
+	$('.loader').show();
+
+	console.log('running');
 	var input = $('#username').val();
 	if(input)
 	{
-
 		$.getJSON('http://localhost:3001/search/user/'+input,
-			function(results)
-			{
+			function(results){
 				console.log(results);
+				if(results.length > 0)
+				{
+					$('#chart1').text("");
+					updateGraphData(results);
+				}
+				else
+				{
+					$('#chart1').text("User doesn't exist or has no tweets");
+				}
 			}
-
 		);
 	}
-});
 
 
-$('.hash').click(function(){
+}
+
+
+function hashSearch(){
 	var input = $('#hash').val();
 	console.log(input);
 	if(input)
@@ -88,24 +117,18 @@ $('.hash').click(function(){
 				function(results)
 				{
 					console.log(results);
+
 				}
 
 			);
 	}
-});
+}
 
 
 	
 	
-
-
-
 </script>
 
- <!--REACT SCRIPTS-->
-
-<script src='js/components/header.js' type='text/babel'></script>
-<script src='js/components/graph.js' type='text/babel'></script>
 
 </body>
 </html>
