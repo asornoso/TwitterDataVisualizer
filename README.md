@@ -4,9 +4,13 @@ Displays data from twitter's API in a way thats quick and easy to read
 #Installation:
 - Requirements:
   - Node.js
+  - Twitter API credentials(create a twitter dev profile and make an app)
 
-- Navigate to project
-- Run 'npm start'
+
+- Edit models --> search.js and drop in your twitter credentials 
+- Save
+- Navigate to project in terminal
+- Run 'npm start' in terminal 
 - Go to localhost:3001 in your browser
 
 
