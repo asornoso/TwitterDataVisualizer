@@ -1,0 +1,13 @@
+html, body{
+	background-color: #fffffe;
+}
+
+h2{
+	margin-bottom: 5px;
+}
+
+div.container{
+	width:90%;
+	margin-left:5%;
+	margin-right:5%;
+}
