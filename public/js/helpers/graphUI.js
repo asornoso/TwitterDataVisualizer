@@ -2,31 +2,7 @@
 
 function updateGraphData(data){
 
-   var dps = [];
-   var count = 0;
-  
-       $.each( data, function( i ) {
-
-        if(data[i].created_at)
-        {
-
-            var date = new Date(data[i].created_at);
-            date = new Date(date.toISOString());
-            iso = +date;
-            count++;
-            var ob={'date':iso, 'amount':parseFloat(count)};
-            dps.push(ob);
-    
-         
-        }
-        else
-        {
-          console.log("ERROR NOT VALID DATA");
-        }
-
-      });
- 
-      create(dps);
+      create(data);
 }
 
 //----------------------CREATE NEW GRAPH HELPER----------------------------
@@ -67,7 +43,11 @@ function create(data){
 
    }
 
+
+
    dates.sort(function(a, b){return a-b});
+
+
 
     var end = new Date(data[data.length-1].date);
     var start = new Date(data[0].date);

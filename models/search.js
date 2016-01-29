@@ -11,14 +11,13 @@ var Promise = require('bluebird');
 
     //Get this data from your twitter apps dashboard
 
- var config = {
+var config = {
         "consumerKey": "",
         "consumerSecret": "",
         "accessToken": "",
         "accessTokenSecret": "",
         "callBackUrl": ""
     }
-
 
 
     /*
@@ -33,6 +32,8 @@ var Promise = require('bluebird');
 
     var twitter = new Twitter(config);
 
+var limit = 3;
+
 module.exports =  {
 
     // Get list of tweets with the hashtag
@@ -42,7 +43,7 @@ module.exports =  {
           	//twitter.getCustomApiCall('/search/tweets.json',{'q':'%23'+tag, 'result_type':'recent', 'count':'100'}, 
 			 twitter.getSearch({'q':'#'+tag,'count': 100},
 				function(err){
-					return resolve(err);
+					return resolve(err);  
 				}, 
 				function(data){
 					return resolve(data);
@@ -53,16 +54,38 @@ module.exports =  {
 
 
 
+    getAllUserInstancesAgain: function(user, max){
+        console.log('Model: Data with Max: '+max);
+    	 return new Promise(function (resolve, reject) {
+
+                     twitter.getUserTimeline({ screen_name: user, count: '200','max_id':max}, 
+                        function(err){
+                            return  resolve(err);
+                        },function(data){
+                            return resolve(data);
+                        });
+                
+
+        });
+    },
+
+
+
     getAllUserInstances: function(user){
 
-    	 return new Promise(function (resolve, reject) {
-          	twitter.getUserTimeline({ screen_name: user, count: '200'}, 
-				function(err){
-					return resolve(err);
-				}, 
-				function(data){
-					return resolve(data);
-				});
+        console.log('Model: Data');
+
+         return new Promise(function (resolve, reject) {
+                
+                    twitter.getUserTimeline({ screen_name: user, count: '200'}, 
+                        function(err){
+                            return resolve(err);
+                        }, 
+                        function(data){
+                            return resolve(data);
+                        });
+                
+
         });
     },
 
@@ -81,4 +104,36 @@ module.exports =  {
 
 };
 
+
+
+function recursiveData(max, user, data, repeats){
+
+    if(data.length < 200 || repeats >= limit)
+    {
+        return data;
+    }
+    else
+    {
+        twitter.getUserTimeline({ screen_name: user, count: '200','max_id':max}, 
+            function(err){
+                console.log(err);
+                return  data;
+            },function(data2){
+                
+                data = data.concat(data2);
+
+                if(data2.length == 200)
+                {
+                    recursiveData(data2[199].id_str, user, data, ++repeats);
+                }
+                else
+                {
+                    return data;
+                }
+
+            });
+    }
+ 
+
+}
 return module.exports;

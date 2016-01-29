@@ -15,12 +15,14 @@
 
 <!--CSS-->
      <link rel="stylesheet" href="references/css/materialize.min.css">
-
      <link rel="stylesheet" href="references/css/graph.css">
-          <link rel="stylesheet" href="references/css/styles.css">
+     <link rel="stylesheet" href="references/css/styles.css">
 
   
 <!-- JS HELPERS -->
+
+	<script src='js/helpers/loader.js'></script>
+	<script src='js/helpers/tweetTable.js'></script>
 	<script src='js/helpers/stats.js'></script>
   	<script src='js/helpers/lineGraph.js'></script>
   	<script src='js/helpers/graphUI.js'></script>
@@ -37,10 +39,28 @@
 		<div class='col s12 m12 l12 center-align'>
 			<h2>Twitter Data Visualizer</h2>
 			<input id='username' placeholder='Search Username Activity Trend' type='text'/> 
-			<div  class='btn user'> Search </div>
 		</div>
 	</div>
 	<div class='row'>
+		<div class='col s12 m12 l12 center-align'>
+			<a class='dropdown-button btn selected-amount'  data-activates='dropdown1'>Amount of tweets:</a>
+			<p>Note: 3200 tweets may take a minute</p>
+			<ul id='dropdown1' class='dropdown-content'>
+			    <li><a href='#!' class='dd-amount'>200</a></li>
+			    <li><a href='#!' class='dd-amount'>1000</a></li>
+			    <li><a href='#!' class='dd-amount'>3200</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col s12 m12 l12 center-align'>
+			<div  class='btn user'> Search </div>
+		</div>
+	</div>
+
+
+
+	<div class='row graphRow'>
 		<div class='col s12 m12 l12 center-align'>
 	<!-- 
 		<input id='hash' placeholder='Hashtag Trend (leave out #)' type='text'/> 
@@ -50,7 +70,29 @@
 	<!-- GRAPHS ARE PUT INSIDE HERE -->
 	   		<div id="chart1" class="chart"></div>
 		</div>
+
+		<div class='row'>
+			<div class='col s12 m12 l12 center-align'>
+				<h2>Tweets</h2>
+				<table class="striped" id='tweetTable'>
+			        <thead>
+			          <tr>
+			              <th data-field="id">Date</th>
+			              <th data-field="name"> Text</th>
+			              <th data-field="price">Favs</th>
+			          </tr>
+			        </thead>
+
+			        <tbody id='tweetTableBody'>
+			          
+			          
+			         
+			        </tbody>
+			      </table>
+			</div>
+		</div>
 	</div>
+
 </div>
 
 
@@ -60,13 +102,62 @@
 
 
 
+		<!-- ------------------------LOADER----------------------------- -->
+		<div class='loader'>
+		          <div class="preloader-wrapper big active">
+		              <div class="spinner-layer spinner-blue">
+		                <div class="circle-clipper left">
+		                  <div class="circle"></div>
+		                </div><div class="gap-patch">
+		                  <div class="circle"></div>
+		                </div><div class="circle-clipper right">
+		                  <div class="circle"></div>
+		                </div>
+		              </div>
+
+		              <div class="spinner-layer spinner-red">
+		                <div class="circle-clipper left">
+		                  <div class="circle"></div>
+		                </div><div class="gap-patch">
+		                  <div class="circle"></div>
+		                </div><div class="circle-clipper right">
+		                  <div class="circle"></div>
+		                </div>
+		              </div>
+
+		              <div class="spinner-layer spinner-yellow">
+		                <div class="circle-clipper left">
+		                  <div class="circle"></div>
+		                </div><div class="gap-patch">
+		                  <div class="circle"></div>
+		                </div><div class="circle-clipper right">
+		                  <div class="circle"></div>
+		                </div>
+		              </div>
+
+		              <div class="spinner-layer spinner-green">
+		                <div class="circle-clipper left">
+		                  <div class="circle"></div>
+		                </div><div class="gap-patch">
+		                  <div class="circle"></div>
+		                </div><div class="circle-clipper right">
+		                  <div class="circle"></div>
+		                </div>
+		              </div>
+		            </div>
+		        
+		    </div>
+
+
 
 <script>
+var amount = 200;
 
 $('.loader').hide();
 
 window.onload = function(){
 	updateGraphData([{'created_at':'2016-1-1'}]);
+	$('.loader').hide();
 }
 
 
@@ -80,33 +171,45 @@ $('#username').keyup(function (e) {
     }
 });
 
+$('.dd-amount').click(function(){
+	console.log(this.text);
+	if(this.text == 'ALL')
+	{
+		amount =1000000;
+	}
+	else
+	{
+		amount = this.text;
+	}
+	$('.selected-amount').html('Amount of tweets: ' + amount);
+});
+
 function userSearch(){
 
-	$('.loader').show();
+	addLoader();
 
 	console.log('running');
 	var input = $('#username').val();
-	if(input)
-	{
-		$.getJSON('http://localhost:3001/search/user/'+input,
-			function(results){
-				console.log(results);
-				if(results.length > 0)
-				{
-					$('#chart1').text("");
-					updateGraphData(results);
+	if(input){
+		$.ajax({
+			url:'http://localhost:3001/search/user/'+input+'/'+amount,
+			dataType: 'json',
+		}).done(function(results){
+				if(results.length > 0){
+						$('#chart1').text("");
+						$("#tweetTableBody").empty();
+						
+							createTweetTable(results);
+						
+
+						updateGraphData(results);
 				}
-				else
-				{
+				else{
 					$('#chart1').text("User doesn't exist or has no tweets");
 				}
-			}
-		);
+			});
 	}
-
-
 }
-
 
 function hashSearch(){
 	var input = $('#hash').val();
@@ -114,19 +217,21 @@ function hashSearch(){
 	if(input)
 	{
 			$.getJSON('http://localhost:3001/search/hashtag/'+input,
-				function(results)
-				{
+				function(results){
 					console.log(results);
-
 				}
-
 			);
 	}
 }
-
-
 	
-	
+
+function getMoreUserData(){
+	$.ajax({
+		url:'http://localhost:3001/search/user/'+input,
+		dataType: 'json',
+	});
+}
+
 </script>
 
 
