@@ -12,10 +12,10 @@ var Promise = require('bluebird');
     //Get this data from your twitter apps dashboard
 
 var config = {
-        "consumerKey": "ubWqphRF3oLaw3jBZmE4aqMXi",
-        "consumerSecret": "lXwoiXUU4nZY8hqlezbStJiyTDDLFHpP6UTGHhUs1krbChrozL",
-        "accessToken": "4817676860-zyrGapKno1jmEeFOnVZjtN3TZJdF1BLxzjMf1wx",
-        "accessTokenSecret": "wATsODIb4N4Qt0IgpnCVN5Z0ZdBsPKUbI1ozXusEqbR7s",
+        "consumerKey": "",
+        "consumerSecret": "",
+        "accessToken": "",
+        "accessTokenSecret": "",
         "callBackUrl": ""
     }
 
