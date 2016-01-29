@@ -11,10 +11,10 @@ registerKeyboardHandler = function(callback) {
 SimpleGraph = function(elemid, options) {
   var self = this;
   this.chart = document.getElementById(elemid);
-   this.cx=$(window).width()*0.750;
-   this.cy=$(window).height()*0.70;
-  //this.cx=850;
-  //this.cy=550;
+   //this.cx=$(window).width()*0.750;
+   //this.cy=$(window).height()*0.70;
+  this.cx=850;
+  this.cy=550;
   this.options = options || {};
   this.options.xmax = options.xmax || 30;
   this.options.xmin = options.xmin || 0;
@@ -158,9 +158,9 @@ SimpleGraph = function(elemid, options) {
   this.redraw()();
 
 //REMOVE LOADING SCREEN
-//removeLoader();
+removeLoader();
 
-$('.loader').hide();
+
 
 };
   

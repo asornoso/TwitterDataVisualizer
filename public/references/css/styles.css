@@ -11,3 +11,7 @@ div.container{
 	margin-left:5%;
 	margin-right:5%;
 }
+
+td{
+	min-width: 100px;
+}
