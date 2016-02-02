@@ -17,6 +17,14 @@ Displays data from twitter's API in a way thats quick and easy to read
 #How to use:
 - Enter a username to see that user's activity over time.
 
+[[https://github.com/asornoso/TwitterDataVisualizer/blob/master/public/references/assets/pictures/ss0.png|alt=GraphPic]]
+
+
+
+[[https://github.com/asornoso/TwitterDataVisualizer/blob/master/public/references/assets/pictures/ss1.png|alt=TablePic]]
+
+
+
 #How it works:
 - This product uses Twitter's API to pull data from twitter.
   - Why?
