@@ -19,13 +19,6 @@ Displays data from twitter's API in a way thats quick and easy to read
 ![tag alt](public/references/assets/pictures/ss0.png)
 ![tag alt](public/references/assets/pictures/ss1.png)
 
-[[https://github.com/asornoso/TwitterDataVisualizer/blob/master/public/references/assets/pictures/ss0.png|alt=GraphPic]]
-
-
-
-[[https://github.com/asornoso/TwitterDataVisualizer/blob/master/public/references/assets/pictures/ss1.png|alt=TablePic]]
-
-
 
 #How it works:
 - This product uses Twitter's API to pull data from twitter.
