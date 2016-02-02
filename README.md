@@ -16,6 +16,8 @@ Displays data from twitter's API in a way thats quick and easy to read
 
 #How to use:
 - Enter a username to see that user's activity over time.
+![tag alt](public/references/assets/pictures/ss0.png)
+![tag alt](public/references/assets/pictures/ss1.png)
 
 [[https://github.com/asornoso/TwitterDataVisualizer/blob/master/public/references/assets/pictures/ss0.png|alt=GraphPic]]
 
