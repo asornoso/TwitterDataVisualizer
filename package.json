@@ -23,7 +23,7 @@
     "mocha": "^2.3.4",
     "nodeQuery": "0.0.41",
     "should": "^8.0.1",
-    "superagent": "^1.5.0",
+    "superagent": "^6.1.0",
     "twitter-js-client": "^0.0.5"
   }
 }
